@@ -8,7 +8,7 @@ DOCOUT = README-$(PROG)-godoc.md
 
 all:
 	go build -v
-
+	go install
 # change cp to echo if you really don't want to install the program
 
 install:
