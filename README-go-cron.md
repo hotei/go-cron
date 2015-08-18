@@ -4,7 +4,7 @@ go-cron
 </center>
 
 <h3>   <a href="http://godoc.org/github.com/hotei/go-cron">
-<img src="https://godoc.org/github.com/hotei/ansiterm?status.png" alt="GoDoc" />
+<img src="https://godoc.org/github.com/hotei/go-cron?status.png" alt="GoDoc" />
 </a>Travis <a href="http://travis-ci.org/hotei/go-cron">
 <img src="https://secure.travis-ci.org/hotei/go-cron.png" alt="Build Status" /></a>
 </h1>
@@ -79,7 +79,8 @@ customize the minimum delay between checks if desired.
 
 ### References
 
-* [Source for go-cron on github] [3]
+* [Source for hotei/go-cron on github] [3]
+* [Source for rk/go-cron on github] [9]
 * [go language reference] [1] 
 * [go standard library package docs] [2]
 * [Excellent godoc howto by Nate Finch] [8]
@@ -93,6 +94,7 @@ customize the minimum delay between checks if desired.
 [6]: http://golang.org/doc/articles/godoc_documenting_go_code.html "GoDoc HowTo"
 [7]: https://github.com/golang/go/wiki/Projects "go project list"
 [8]: https://github.com/natefinch/godocgo "Nate Finch's Tutorial for GoDoc"
+[9]: http://github.com/rk/go-cron "github.com/rk/go-cron"
 
 Comments can be sent to David Rook  <hotei1352@gmail.com>  Any issues/bugs
 can be mentioned in email to me or filed on github.
@@ -104,7 +106,7 @@ Any trademarks mentioned herein are the property of their respective owners.
 
 The 'go-cron' go program/package and demo programs are distributed under the Simplified BSD License:
 
-> Copyright (c) 2015 David Rook. All rights reserved.
+> Copyright (c) Robert Kosek, portions (c) 2015 David Rook. All rights reserved.
 > 
 > Redistribution and use in source and binary forms, with or without modification, are
 > permitted provided that the following conditions are met:
