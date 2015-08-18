@@ -5,10 +5,10 @@ go-cron
 
 <h3>   <a href="http://godoc.org/github.com/hotei/go-cron">
 <img src="https://godoc.org/github.com/hotei/ansiterm?status.png" alt="GoDoc" />
-</a></h1>
-
-Travis Status <a href="http://travis-ci.org/hotei/go-cron">
+</a>Travis <a href="http://travis-ci.org/hotei/go-cron">
 <img src="https://secure.travis-ci.org/hotei/go-cron.png" alt="Build Status" /></a>
+</h1>
+
 
 This "README" document is (c) 2015 David Rook. 
 
@@ -47,7 +47,8 @@ If you have a working go installation on a Unix-like OS:
 
 If you don't have go installed you can always download the git repository as
 a zipfile and extract it. If you just want to see what the package internals
-look like, take a look at the godoc.org link at the top of this page.
+look like, take a look at this godoc.org link <a href="http://godoc.org/github.com/hotei/go-cron">
+<img src="https://godoc.org/github.com/hotei/ansiterm?status.png" alt="GoDoc" /></a>.
 
 
 ### Features
