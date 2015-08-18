@@ -36,13 +36,15 @@
 
  This is my fork of github.com/rk/go-cron by Robert Kosek
 
-  1)	Replaced -1 by ANY for readability improvement
+  1)	Replaced -1 by any for readability improvement
   2)	Changed *time.Time to time.Time  WHY: pointer to time struct useful if you
   need to change something that gets back to the caller.  Not the case here. Otherwise
   go style (as I understand it) suggests not using pointers if not required.
   3)	Added cron_test.go example of usage
   4) 	Added yearly job (just for completeness)
   5)	Added a little more to docs
+  6)	Unexport ANY --> any
+  7)	Make resolution (CheckDelay) an exported variable
 
   A sample task looks like this:
 
@@ -53,7 +55,7 @@
   A skeletal main program that will run for at least a year looks like this:
 
   func main() {
-  	NewDailyJob(ANY,ANY,5,mytask)
+  	NewDailyJob(any,any,5,mytask)
   	time.Sleep(366 * 24 * time.Hour)
   }
 
@@ -71,9 +73,12 @@ type job struct {
 	Task                 func(time.Time)
 }
 
-const ANY = -1
+const any = -1
 
-var jobs []job
+var (
+	jobs       []job
+	CheckDelay = time.Duration(1 * time.Second) // minimum delay between checks
+)
 
 // This function creates a new job that occurs at the given day and the given
 // 24hour time. Any of the values may be -1 as an "any" match, so passing in
@@ -87,35 +92,35 @@ func NewCronJob(month, day, weekday, hour, minute, second int8, task func(time.T
 // NewYearlyJob creates a job that fires yearly at a given time on a given month and day.
 //	Birthday reminder.
 func NewYearlyJob(month, day, hour, minute, second int8, task func(time.Time)) {
-	NewCronJob(month, day, ANY, hour, minute, second, task)
+	NewCronJob(month, day, any, hour, minute, second, task)
 }
 
 // NewMonthlyJob creates a job that fires monthly at a given time on a given day.
-//	Pay the rent.
+//	Pay the rent on the 5th of the month.
 func NewMonthlyJob(day, hour, minute, second int8, task func(time.Time)) {
-	NewCronJob(ANY, day, ANY, hour, minute, second, task)
+	NewCronJob(any, day, any, hour, minute, second, task)
 }
 
 // NewWeeklyJob creates a job that fires on the given day of the week and time.
-//	Go to spinning class at the Y.
+//	Go to spinning class at the Y on Tuesday.
 func NewWeeklyJob(weekday, hour, minute, second int8, task func(time.Time)) {
-	NewCronJob(ANY, ANY, weekday, hour, minute, second, task)
+	NewCronJob(any, any, weekday, hour, minute, second, task)
 }
 
 // NewDailyJob creates a job that fires daily at a specified time.
 //	Take a vitamin pill reminder.
 func NewDailyJob(hour, minute, second int8, task func(time.Time)) {
-	NewCronJob(ANY, ANY, ANY, hour, minute, second, task)
+	NewCronJob(any, any, any, hour, minute, second, task)
 }
 
 // Matches returns true if the job time has arrived (Alarm clock rings)
 func (cj job) Matches(t time.Time) (ok bool) {
-	return (cj.Month == ANY || cj.Month == int8(t.Month())) &&
-		(cj.Day == ANY || cj.Day == int8(t.Day())) &&
-		(cj.Weekday == ANY || cj.Weekday == int8(t.Weekday())) &&
-		(cj.Hour == ANY || cj.Hour == int8(t.Hour())) &&
-		(cj.Minute == ANY || cj.Minute == int8(t.Minute())) &&
-		(cj.Second == ANY || cj.Second == int8(t.Second()))
+	return (cj.Month == any || cj.Month == int8(t.Month())) &&
+		(cj.Day == any || cj.Day == int8(t.Day())) &&
+		(cj.Weekday == any || cj.Weekday == int8(t.Weekday())) &&
+		(cj.Hour == any || cj.Hour == int8(t.Hour())) &&
+		(cj.Minute == any || cj.Minute == int8(t.Minute())) &&
+		(cj.Second == any || cj.Second == int8(t.Second()))
 }
 
 func processJobs() {
@@ -127,7 +132,7 @@ func processJobs() {
 				go j.Task(now)
 			}
 		}
-		time.Sleep(time.Second)
+		time.Sleep(CheckDelay)
 	}
 }
 

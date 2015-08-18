@@ -38,10 +38,8 @@ index:
 
 clean:
 	go clean ./...
-	rm -f *~ problems.dead count.out
+	rm -f *~ problems.dead count.out README2.md $(DOCOUT)
 
 tar:
 	echo $(TARDIR)$(PROG)_$(VERSION)_$(DATE).tar
 	tar -ncvf $(TARDIR)$(PROG)_$(VERSION)_$(DATE).tar .
-
-
